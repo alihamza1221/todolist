@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <title>Todo-List</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/styles.css" type="text/css">
+</head>
+<body style=" background-color: #E4E9FD; background-image: -webkit-linear-gradient(65deg,#9864f1 50% #6e83d4 50%) min-height = 1000px" >
+</body>
+</html>
+<div class="container">
+<div class="container text-center mt-5 px-2">
+    <form action="/" method="POST" class="mb-3 d-flex flex-column flex-md-row justify-content-center align-items-center">
+
+        <div class="mb-1 me-md-3 my-4 row">
+            <div class="col-sm-5 d-flex">
+        <input type="text" name="todo" placeholder="Wanna develop habits." class="form-control" style="background-color: #7037d2; min-height: 50px; min-width: 500px; border: none; box-shadow: 15px 5px 15px -5px rgb(0, 0, 0.3);">
+            <input type="submit" name="submit" class="btn" style="background-color: #8846fa; ">
+        </div>
+        </div>
+    </form>
+</div>
+   
+<div class="flex-column flex-md-row p-4  ms-4 align-items-center justify-content-center">
+    
+    <div class="  d-flex gap-2 justify-content-center flex-column align-items-center">
+        <% todos.forEach(function(todo) { %>
+          
+        <label class="list-group-item d-flex  " style="background-color: #A683E3 ;width:45% ; height: 60px;">
+          <input class="form-check-input flex-shrink-0 todo-checkbox " type="checkbox" value="" style="font-size: 1.375em;">
+            <span class="pt-1 form-checked-content">
+        <strong><%= todo.text %></strong>
+        <small class="d-block text-body-secondary">
+          <%=todo.time%>
+        </small>
+      </span>
+        </label>
+        <% }); %>
+    
+</div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const checkboxes = document.querySelectorAll(".todo-checkbox");
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener("change", function() {
+                const strongElement = checkbox.nextElementSibling.querySelector("strong");
+                if (checkbox.checked) {
+                    strongElement.style.textDecoration = "line-through";
+                } else {
+                    strongElement.style.textDecoration = "none";
+                }
+            });
+        });
+    });
+
+</script>
